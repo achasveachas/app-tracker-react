@@ -6,9 +6,10 @@ import {
   Link
 } from 'react-router-dom'
 
-const Home = () => <div>Home</div>
-const Signup = () => <form className="signup_form">Signup</form>
-const NotFound = () => <div>Not Found</div>
+import Home from '../views/Home'
+import Signup from '../views/Signup'
+import NotFound from '../views/NotFound'
+
 
 class App extends Component {
   render() {
