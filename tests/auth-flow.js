@@ -7,5 +7,9 @@ module.exports = {
       .click('a[href=/signup]')
 
     client.assert.urlContains('signup')
+  },
+
+  'signup user and redirect to applications': (client) => {
+
   }
 }
