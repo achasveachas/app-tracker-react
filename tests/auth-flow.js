@@ -7,10 +7,12 @@ module.exports = {
       .click('a[href="/signup"]')
 
       client.assert.urlContains('signup')
-      client.assert.cssClassPresent('#form','signup_form')
+      client.assert.cssClassPresent('form','signup_form')
   },
 
   'signup user and redirect to applications': (client) => {
 
-  }
+  },
+
+  'close': (client) => client.end()
 }
