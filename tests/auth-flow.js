@@ -4,7 +4,7 @@ module.exports = {
     client
       .url(client.launchUrl)
       .waitForElementVisible('.navbar', 1000)
-      .click('a[href=/signup]')
+      .click('a[href="/signup"]')
 
     client.assert.urlContains('signup')
   },
