@@ -5,9 +5,9 @@
 
   <testsuite name="auth-flow"
     errors="1" failures="1" hostname="" id="" package="auth-flow" skipped="1"
-    tests="3" time="2.073" timestamp="Tue, 02 May 2017 05:32:24 GMT">
+    tests="3" time="3.329" timestamp="Wed, 03 May 2017 00:26:31 GMT">
   
-    <testcase name="get to signup page" classname="auth-flow" time="0.9060" assertions="3">
+    <testcase name="get to signup page" classname="auth-flow" time="1.754" assertions="3">
 
     
 
@@ -29,7 +29,7 @@
     at _combinedTickCallback (internal/process/next_tick.js:67:7)
       </system-err>
   
-    <testcase name="signup user and redirect to applications" classname="auth-flow" time="1.167" assertions="2">
+    <testcase name="signup user and redirect to applications" classname="auth-flow" time="1.575" assertions="2">
 
       <failure message="Failed [equal]: ({ additionalInformation: '\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{applicationCacheEnabled=false,  == 'Thanks for signing up!')">    at Object.&lt;anonymous&gt; (/home/flatironschool/Development/code/Projects/final-project/app-tracker-react/tests/auth-flow.js:21:21)</failure>
 
