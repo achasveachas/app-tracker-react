@@ -1,21 +1,13 @@
-import {
-  createStore,
-  applyMiddleware,
-  combineReducers
-} from 'redux';
-import thunk from 'redux-thunk';
-import { reducer as form } from 'redux-form';
+import { createStore, combineReducers } from 'redux';
 import auth from '../modules/Auth/reducer'
+import applications from '../modules/Applications/reducer'
 
 const reducers = combineReducers({
-  form,
-  auth
+  auth,
+  applications
 })
-
-const middleware = [thunk]
 
 export default createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  applyMiddleware(...middleware)
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
