@@ -9,21 +9,21 @@ export default (state = initialState, action) => {
     case 'ADD_APPLICATION':
       return {
         ...state,
-        state.applications.concat(action.application)
+        applications: state.applications.concat(action.application)
       }
 
     case 'EDIT_APPLICATION':
-      const application = state.applications.filter(a => a.id == action.application.id)[0]
-      const editedApplication = Object.assign({}, action.application)
+      const application = state.applications.filter(a => a.id === action.application.id)[0]
+      const editedApplication = Object.assign({}, application, action.application)
       return {
         ...state,
-        state.applications: [
+        applications: [
               ...state.applications.slice(0, action.index),
               editedApplication,
               ...state.applications.slice(action.index + 1)
             ]
         }
-      }
+
 
     case 'DELETE_APPLICATION':
       return {
