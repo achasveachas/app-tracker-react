@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const Signup = () =>
   <div className="uk-position-center">
-    <h2 class="uk-heading-line uk-text-center"><span>Sign Up:</span></h2>
+    <h2 className="uk-heading-line uk-text-center"><span>Sign Up:</span></h2>
     <form className="uk-form-stacked">
 
       <div className="uk-margin">
