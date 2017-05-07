@@ -8,6 +8,7 @@ import {
 
 import Home from '../views/Home'
 import Signup from '../views/Signup'
+import Login from '../views/Login'
 import NotFound from '../views/NotFound'
 
 
@@ -21,12 +22,14 @@ class App extends Component {
               <ul className="uk-navbar-nav">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/signup">Signup</Link></li>
+                <li><Link to="/login">Login</Link></li>
               </ul>
             </div>
           </nav>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Login} />
             <Route component={NotFound} />
           </Switch>
         </div>

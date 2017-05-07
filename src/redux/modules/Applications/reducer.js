@@ -27,7 +27,11 @@ export default (state = initialState, action) => {
 
     case 'DELETE_APPLICATION':
       return {
-
+        ...state,
+        applications: [
+              ...state.applications.slice(0, action.index),
+              ...state.applications.slice(action.index + 1)
+            ]
       }
 
     default:
