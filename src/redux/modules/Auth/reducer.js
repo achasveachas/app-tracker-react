@@ -20,6 +20,13 @@ export default (state = initialState, action) => {
         currentUser: action.user
       }
 
+    case 'AUTHENTICATION_FAILURE':
+      return {
+        isAuthenticated: false,
+        isAuthenticating: false,
+        currentUser: {}
+      }
+
     default:
       return state;
   }
