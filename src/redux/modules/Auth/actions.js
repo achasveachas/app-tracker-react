@@ -1,5 +1,5 @@
-import { reset, SubmissionError } from 'redux-form'
-import Api from '../../../services/Api'
+import { reset, SubmissionError } from 'redux-form';
+import ApiServices from '../../../services/Api'
 
 // Actions
 
@@ -29,7 +29,7 @@ const authFailure = (errors) => {
 export const signup = (user, router) => {
   return dispatch => {
     dispatch(authRequest())
-    return Api.post('/users', user)
+    return ApiServices.post('/users', user)
       .then(response => {
         const { user, token } = response
         localStorage.setItem('token', JSON.stringify(token))
