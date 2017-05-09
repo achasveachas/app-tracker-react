@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
       return {
         isAuthenticated: false,
         isAuthenticating: false,
-        currentUser: {}
+        errors: action.errors
       }
 
     default:

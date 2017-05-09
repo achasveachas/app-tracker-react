@@ -11,8 +11,9 @@ export const authSuccess = (user) => {
   }
 }
 
-export const authFailure = () => {
+export const authFailure = (errors) => {
   return {
     type: 'AUTHENTICATION_FAILURE',
+    errors: errors
   }
 }
