@@ -1,3 +1,5 @@
+import Api from '../../../services/Api'
+
 export const authRequest = () => {
   return {
     type: 'AUTHENTICATION_REQUEST',
