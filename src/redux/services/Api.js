@@ -20,3 +20,41 @@ const parseResponse = (response) => {
       return json
     }
 }
+
+export default {
+  get(url) {
+    return fetch(`${BASE_URL}${url}`, {
+      method: 'GET',
+      headers: 'headers'
+    })
+    .then(parseResponse)
+  },
+
+  post(url, data ={}) {
+    const body = JSON.stringify(data)
+    return fetch(`${BASE_URL}${url}`, {
+      method: 'POST',
+      headers: 'headers',
+      body: body
+    })
+    .then(parseResponse)
+  },
+
+  patch(url, data ={}) {
+    const body = JSON.stringify(data)
+    return fetch(`${BASE_URL}${url}`, {
+      method: 'PATCH',
+      headers: 'headers',
+      body: body
+    })
+    .then(parseResponse)
+  },
+
+  delete(url) {
+    return fetch(`${BASE_URL}${url}`, {
+      method: 'DELETE',
+      headers: 'headers'
+    })
+    .then(parseResponse)
+  }
+}
