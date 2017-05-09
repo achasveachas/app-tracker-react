@@ -10,6 +10,7 @@ import Home from '../views/Home'
 import Signup from '../views/Signup'
 import Login from '../views/Login'
 import NotFound from '../views/NotFound'
+import Applications from '../views/Applications'
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/applications" component={Applications} />
             <Route component={NotFound} />
           </Switch>
         </div>
