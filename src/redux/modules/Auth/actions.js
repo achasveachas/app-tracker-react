@@ -1,3 +1,4 @@
+import { reset, SubmissionError } from 'redux-form'
 import Api from '../../../services/Api'
 
 // Actions
@@ -24,3 +25,21 @@ const authFailure = (errors) => {
 
 
 // async functions
+
+export const signup = (user, router) => {
+  return dispatch => {
+    dispatch(authRequest())
+    return Api.post('/users', user)
+      .then(response => {
+        const { user, token } = response
+        localStorage.setItem('token', JSON.stringify(token))
+        dispatch(authSuccess(user))
+        dispatch(reset('signup'))
+        router.history.replace('/applications')
+      })
+      .catch((err) => {
+        console.log(err)
+        throw new SubmissionError(err)
+      })
+  }
+}
