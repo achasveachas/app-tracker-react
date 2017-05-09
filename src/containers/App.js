@@ -5,6 +5,7 @@ import {
   Switch,
   Link
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import Home from '../views/Home'
 import Signup from '../views/Signup'
@@ -28,7 +29,7 @@ class App extends Component {
             </div>
           </nav>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={this.props.isAuthenticated ? Applications : Home} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/applications" component={Applications} />
@@ -40,4 +41,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    currentUser: state.auth.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(App);
