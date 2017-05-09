@@ -1,21 +1,26 @@
 import Api from '../../../services/Api'
 
-export const authRequest = () => {
+// Actions
+
+const authRequest = () => {
   return {
     type: 'AUTHENTICATION_REQUEST',
   }
 }
 
-export const authSuccess = (user) => {
+const authSuccess = (user) => {
   return {
     type: 'AUTHENTICATION_SUCCESS',
     user: user
   }
 }
 
-export const authFailure = (errors) => {
+const authFailure = (errors) => {
   return {
     type: 'AUTHENTICATION_FAILURE',
     errors: errors
   }
 }
+
+
+// async functions
