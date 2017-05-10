@@ -1,6 +1,6 @@
 const initialState = {
-  isAuthenticated: !!localStorage.token,
-  isAuthenticating: false,
+  isAuthenticated: false,
+  isAuthenticating: true,
   currentUser: {}
 }
 
@@ -26,6 +26,9 @@ export default (state = initialState, action) => {
         isAuthenticating: false,
         errors: action.errors
       }
+
+    case 'LOGOUT':
+      return Object.assign({}, initialState, {isAuthenticating: false});
 
     default:
       return state;

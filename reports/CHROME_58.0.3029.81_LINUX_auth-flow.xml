@@ -4,25 +4,25 @@
             tests="3">
 
   <testsuite name="auth-flow"
-    errors="0" failures="1" hostname="" id="" package="auth-flow" skipped="2"
-    tests="3" time="1.306" timestamp="Tue, 09 May 2017 00:25:27 GMT">
+    errors="0" failures="1" hostname="" id="" package="auth-flow" skipped="1"
+    tests="3" time="1.525" timestamp="Wed, 10 May 2017 00:23:30 GMT">
   
-    <testcase name="get to signup page" classname="auth-flow" time="1.306" assertions="3">
+    <testcase name="get to signup page" classname="auth-flow" time="1.046" assertions="2">
 
     
 
-      <failure message="Testing if element &lt;form&gt; has css class: &quot;signup_form&quot;.">    at Object.get to signup page (/home/flatironschool/Development/code/Projects/final-project/app-tracker-react/tests/auth-flow.js:10:22)
+    
+    </testcase>
+  
+    <testcase name="signup user and redirect to applications" classname="auth-flow" time="0.4790" assertions="2">
+
+      <failure message="Testing if the URL contains &quot;/applications&quot;.">    at Object.signup user and redirect to applications (/home/flatironschool/Development/code/Projects/final-project/app-tracker-react/tests/auth-flow.js:20:20)
     at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
 
     
     </testcase>
   
   
-    
-    <testcase
-      name="signup user and redirect to applications" classname="auth-flow">
-      <skipped />
-    </testcase>
     
     <testcase
       name="close" classname="auth-flow">
