@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Link
+  Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -12,6 +11,7 @@ import Signup from '../views/Signup'
 import Login from '../views/Login'
 import NotFound from '../views/NotFound'
 import Applications from '../views/Applications'
+import Navbar from '../views/Navbar'
 
 
 class App extends Component {
@@ -19,15 +19,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <nav className="uk-navbar-container navbar uk-navbar">
-            <div className="uk-navbar-left">
-              <ul className="uk-navbar-nav">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/signup">Signup</Link></li>
-                <li><Link to="/login">Login</Link></li>
-              </ul>
-            </div>
-          </nav>
+          <Navbar isAuthenticated={this.props.isAuthenticated}/>
           <Switch>
             <Route exact path="/" component={this.props.isAuthenticated ? Applications : Home} />
             <Route exact path="/signup" component={Signup} />
