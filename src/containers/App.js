@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar isAuthenticated={this.props.isAuthenticated} logout={logout}/>
+          <Navbar isAuthenticated={this.props.isAuthenticated} logout={logout} currentUser={this.props.currentUser.username}/>
           <Switch>
             <Route exact path="/" component={this.props.isAuthenticated ? Applications : Home} />
             <Route exact path="/signup" component={Signup} />

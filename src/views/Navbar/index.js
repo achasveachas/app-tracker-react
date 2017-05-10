@@ -15,14 +15,22 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="uk-navbar-container navbar uk-navbar">
-        <div className="uk-navbar-left">
+        <div>
           {
             this.props.isAuthenticated ?
-            <ul className="uk-navbar-nav">
-              <li><NavLink to="/">Home</NavLink></li>
-              <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
-            </ul>
+            <nav className="uk-navbar-container navbar uk-navbar">
+              <div className="uk-navbar-left">
+                <ul className="uk-navbar-nav">
+                  <li><NavLink to="/">Home</NavLink></li>
+                  <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
+                </ul>
+              </div>
+              <div className="uk-navbar-right uk-padding-small">
+                <ul className="uk-navbar-nav">
+                  <li>Hello {this.props.currentUser}!</li>
+                </ul>
+              </div>
+            </nav>
 
             :
 
@@ -33,7 +41,6 @@ class Navbar extends Component {
             </ul>
           }
         </div>
-      </nav>
     )
   }
 }
