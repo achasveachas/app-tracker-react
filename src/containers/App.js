@@ -5,6 +5,7 @@ import {
   Switch
 } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logout } from '../redux/modules/Auth/actions'
 
 import Home from '../views/Home'
 import Signup from '../views/Signup'
@@ -19,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar isAuthenticated={this.props.isAuthenticated}/>
+          <Navbar isAuthenticated={this.props.isAuthenticated} logout={logout}/>
           <Switch>
             <Route exact path="/" component={this.props.isAuthenticated ? Applications : Home} />
             <Route exact path="/signup" component={Signup} />
