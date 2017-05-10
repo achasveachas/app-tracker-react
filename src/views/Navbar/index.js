@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import PropTypes from 'prop-types'
+
+type Props = {
+  isAuthenticated: boolean,
+  logout: () => void,
+}
 
 class Navbar extends Component {
 
@@ -8,6 +14,12 @@ class Navbar extends Component {
 
     this.handleLogout = this.handleLogout.bind(this)
   }
+
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
+  props: Props
 
   handleLogout() {
     this.props.logout(this.context.router)
@@ -21,7 +33,7 @@ class Navbar extends Component {
             <nav className="uk-navbar-container navbar uk-navbar">
               <div className="uk-navbar-left">
                 <ul className="uk-navbar-nav">
-                  <li><NavLink to="/">Home</NavLink></li>
+                  <li><NavLink to="/applications">Home</NavLink></li>
                   <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
                 </ul>
               </div>
