@@ -45,8 +45,8 @@ class App extends Component {
         <div className="App">
           <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.props.logout} currentUser={this.props.currentUser.username}/>
           <Switch>
-            <Route exact path="/" component={this.props.isAuthenticated ? Applications : Home} />
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signup" component={Signup} isAuthenticated={this.props.isAuthenticated} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/applications" component={Applications} />
             <Route component={NotFound} />
@@ -72,4 +72,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, {logout, authenticate, authFailure})(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
