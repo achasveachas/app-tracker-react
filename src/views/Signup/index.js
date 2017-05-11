@@ -18,10 +18,16 @@ class Signup extends Component {
     return(
       <div className="uk-position-center">
         <h2 className="uk-heading-line uk-text-center"><span>Sign Up:</span></h2>
-        <UserForm action="signup" onSubmit={this.handleSignup}/>
+        <UserForm action="signup" onSubmit={this.handleSignup} errors={this.props.authErrors}/>
       </div>
     )
   }
 }
 
-export default connect(null, { signup })(Signup)
+const mapStateToProps = (state) => {
+  return {
+    authErrors: state.auth.errors
+  }
+}
+
+export default connect(mapStateToProps, { signup })(Signup)

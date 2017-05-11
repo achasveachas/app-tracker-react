@@ -1,7 +1,8 @@
 const initialState = {
   isAuthenticated: false,
   isAuthenticating: true,
-  currentUser: {}
+  currentUser: {},
+  errors: []
 }
 
 export default (state = initialState, action) => {
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
 
     case 'AUTHENTICATION_SUCCESS':
       return {
+        ...state,
         isAuthenticated: true,
         isAuthenticating: false,
         currentUser: action.user
@@ -22,6 +24,7 @@ export default (state = initialState, action) => {
 
     case 'AUTHENTICATION_FAILURE':
       return {
+        ...state,
         isAuthenticated: false,
         isAuthenticating: false,
         errors: action.errors

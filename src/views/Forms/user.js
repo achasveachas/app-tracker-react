@@ -1,25 +1,17 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-// const validateUsername = values => {
-//   let errors = ""
-//
-//   !values.username ? errors = "Username is required" : null
-//
-//   return errors
-// }
-
 const validate = values => {
   const errors = {};
 
   if (!values.username) {
     errors.username = 'Username is required';
   } else if (values.username.length < 2) {
-    errors.email = 'Username must be a minimum of 2 characters';
+    errors.username = 'Username must be a minimum of 2 characters';
   }
   if (!values.password) {
     errors.password = 'Password is required';
-  } else if (values.password.length < 8) {
+  } else if (values.password.length < 6) {
     errors.password = 'Password must be a minimum of 8 characters';
   }
 
@@ -56,10 +48,11 @@ class UserForm extends Component {
   }
 
   render() {
-    const {handleSubmit} = this.props
+    const {handleSubmit, errors} = this.props
+    const renderedErrorsLi = errors.map((error, i) => <li key={i}>{error}</li>)
     return (
       <form className="uk-form-stacked" onSubmit={handleSubmit(this.handleSubmit)}>
-
+        {errors.length > 0 ? <ul className="uk-alert-danger">{renderedErrorsLi}</ul> : null}
         <div className="uk-margin">
             <label className="uk-form-label" htmlFor="username">Username</label>
             <div className="uk-form-controls">
@@ -75,7 +68,7 @@ class UserForm extends Component {
                 /><br />
               {!!this.state.usernameErrors.username ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : <small><font color="white">.</font></small>}
             </div>
-          <label className="uk-form-label" htmlFor="password">Password</label>
+            <label className="uk-form-label" htmlFor="password">Password</label>
             <div className="uk-form-controls">
               <Field
                 name="password"

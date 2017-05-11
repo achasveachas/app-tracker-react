@@ -39,6 +39,7 @@ export const signup = (user, router) => {
       })
       .catch((err) => {
         console.log(err)
+        dispatch(authFailure(err))
         throw new SubmissionError(err)
       })
   }
