@@ -34,7 +34,7 @@ export default {
     const body = JSON.stringify(data)
     return fetch(`${BASE_URL}${url}`, {
       method: 'POST',
-      headers: 'headers',
+      headers: headers,
       body: body
     })
     .then(parseResponse)

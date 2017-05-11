@@ -24,9 +24,9 @@ export default (state = initialState, action) => {
 
     case 'AUTHENTICATION_FAILURE':
       return {
-        ...state,
         isAuthenticated: false,
         isAuthenticating: false,
+        currentUser: {},
         errors: action.errors
       }
 
