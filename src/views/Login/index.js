@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { login } from '../../redux/modules/Auth/actions'
 import UserForm from '../Forms/user'
 
 
-const Login = () =>
-  <div className="uk-position-center">
-    <h2 className="uk-heading-line uk-text-center"><span>Log In:</span></h2>
-    <UserForm action="login" errors={this.props.errors}/>
-  </div>
+class Login extends Component {
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+  handleLogin = data => this.props.login({user: data}, this.context.router)
+
+  render() {
+    return(
+      <div className="uk-position-center">
+        <h2 className="uk-heading-line uk-text-center"><span>Sign Up:</span></h2>
+        <UserForm action="login" onSubmit={this.handleLogin} errors={this.props.authErrors}/>
+      </div>
+    )
+  }
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -16,4 +30,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default connect(mapStateToProps, { login })(Login)
