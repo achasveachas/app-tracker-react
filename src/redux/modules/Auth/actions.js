@@ -48,11 +48,7 @@ export const signup = (user, router) => {
 export const login = (user, router) => {
   return dispatch => {
     dispatch(authRequest());
-<<<<<<< HEAD
     return ApiServices.post(`/auth`, user)
-=======
-    return ApiService.post(`/auth`, user)
->>>>>>> 1637b1a285a0e98f441c149d3b0fecdf98b84ac2
       .then(response => {
         const { user, token } = response;
         localStorage.setItem('token', JSON.stringify(token));
