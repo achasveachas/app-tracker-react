@@ -16,7 +16,7 @@ const authSuccess = (user) => {
   }
 }
 
-const authFailure = (errors) => {
+export const authFailure = (errors) => {
   return {
     type: 'AUTHENTICATION_FAILURE',
     errors: errors
@@ -66,15 +66,16 @@ export const login = (user, router) => {
 export const authenticate = () => {
   return dispatch => {
     dispatch(authRequest())
-    return ApiServices.post('auth/refresh')
+    return ApiServices.post('/auth/refresh')
       .then(response => {
         const { user, token } = response
         localStorage.setItem('token', JSON.stringify(token))
         dispatch(authSuccess(user))
       })
-      .catch(() => {
+      .catch((errors) => {
+        console.log(errors);
+        dispatch(authFailure(errors))
         localStorage.removeItem('token')
-        window.location = '/'
       })
   }
 }

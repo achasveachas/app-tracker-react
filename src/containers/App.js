@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout } from '../redux/modules/Auth/actions'
 
+// views
 import Home from '../views/Home'
 import Signup from '../views/Signup'
 import Login from '../views/Login'
@@ -15,8 +16,29 @@ import NotFound from '../views/NotFound'
 import Applications from '../views/Applications'
 import Navbar from '../views/Navbar'
 
+// custom made components
+import { authenticate, authFailure } from '../redux/modules/Auth/actions'
+
+type Props = {
+  isAuthenticated: boolean,
+  logout: () => void,
+  authenticate: () => void,
+  authFailure: () => void
+}
 
 class App extends Component {
+
+  props: Props
+
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+    if (token) {
+      this.props.authenticate()
+    } else {
+      this.props.authFailure()
+    }
+  }
+
   render() {
     return (
       <Router>
@@ -44,8 +66,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    logout: logout
+    logout,
+    authenticate,
+    authFailure
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, {logout, authenticate, authFailure})(App);

@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         isAuthenticating: false,
         currentUser: {},
-        errors: action.errors
+        errors: action.errors || []
       }
 
     case 'LOGOUT':
