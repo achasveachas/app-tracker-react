@@ -67,29 +67,29 @@ class UserForm extends Component {
                   name="username"
                   value={this.state.username}
                   onChange={this.handleChange.bind(this)}
-                  className="uk-input uk-form-width-medium"
+                  className="uk-input uk-width-medium"
                   component="input"
                   id="username"
                   type="text"
                   placeholder="Username"
                 /><br />
-              {this.state.usernameErrors !== {} ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : null}
-            </div><br />
+              {!!this.state.usernameErrors.username ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : <small><font color="white">.</font></small>}
+            </div>
           <label className="uk-form-label" htmlFor="password">Password</label>
             <div className="uk-form-controls">
               <Field
                 name="password"
                 value={this.state.password}
                 onChange={this.handleChange.bind(this)}
-                className="uk-input uk-form-width-medium"
+                className="uk-input uk-width-medium"
                 component="input"
                 id="password"
                 type="password"
                 placeholder="Username"
               /><br />
-            {this.state.passwordErrors !== {} ? <small className="uk-alert-danger">{this.state.passwordErrors.password}</small> : null}
-            </div><br />
-          <input type="submit" className="uk-button uk-button-default" value={this.props.action === "signup" ? "Create User" : "Log In"} />
+            {!!this.state.passwordErrors.password ? <small className="uk-alert-danger">{this.state.passwordErrors.password}</small> : <small><font color="white">.</font></small>}
+          </div><br />
+          <input type="submit" className="uk-button uk-button-default uk-position-bottom-center" value={this.props.action === "signup" ? "Create User" : "Log In"} />
         </div>
       </form>
     )
