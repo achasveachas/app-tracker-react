@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
+// const validateUsername = values => {
+//   let errors = ""
+//
+//   !values.username ? errors = "Username is required" : null
+//
+//   return errors
+// }
+
 const validate = values => {
   const errors = {};
 
@@ -25,7 +33,9 @@ class UserForm extends Component {
 
     this.state = {
       username: "",
-      password: ""
+      password: "",
+      usernameErrors: {},
+      passwordErrors: {}
     }
   }
 
@@ -34,10 +44,12 @@ class UserForm extends Component {
   handleChange(event) {
     if (event.target.name === 'username') {
       this.setState({
+        usernameErrors: validate({username: event.target.value}),
         username: event.target.value
       })
     } else if (event.target.name === 'password') {
       this.setState({
+        passwordErrors: validate({password: event.target.value}),
         password: event.target.value
       })
     }
@@ -60,7 +72,8 @@ class UserForm extends Component {
                   id="username"
                   type="text"
                   placeholder="Username"
-                />
+                /><br />
+              {this.state.usernameErrors !== {} ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : null}
             </div><br />
           <label className="uk-form-label" htmlFor="password">Password</label>
             <div className="uk-form-controls">
@@ -73,7 +86,8 @@ class UserForm extends Component {
                 id="password"
                 type="password"
                 placeholder="Username"
-              />
+              /><br />
+            {this.state.passwordErrors !== {} ? <small className="uk-alert-danger">{this.state.passwordErrors.password}</small> : null}
             </div><br />
           <input type="submit" className="uk-button uk-button-default" value={this.props.action === "signup" ? "Create User" : "Log In"} />
         </div>
