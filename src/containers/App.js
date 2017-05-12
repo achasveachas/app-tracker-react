@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout } from '../redux/modules/Auth/actions'
 
 // views
-import Home from '../views/Home'
+import Welcome from '../views/Welcome'
 import Signup from '../views/Signup'
 import Login from '../views/Login'
 import NotFound from '../views/NotFound'
-import Applications from '../views/Applications'
+import Dashboard from '../views/Dashboard'
 import Navbar from '../views/Navbar'
 
 // custom made components
@@ -45,10 +46,16 @@ class App extends Component {
         <div className="App">
           <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.props.logout} currentUser={this.props.currentUser.username}/>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={() => (
+              this.props.isAuthenticated ? (
+                <Redirect to="/dashboard"/>
+              ) : (
+                <Welcome />
+              )
+            )}/>
             <Route exact path="/signup" component={Signup} isAuthenticated={this.props.isAuthenticated} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/applications" component={Applications} />
+            <Route exact path="/dashboard" component={Dashboard} />
             <Route component={NotFound} />
           </Switch>
         </div>
