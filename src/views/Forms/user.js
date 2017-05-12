@@ -26,6 +26,7 @@ class UserForm extends Component {
     this.state = {
       username: "",
       password: "",
+      name: "",
       usernameErrors: {},
       passwordErrors: {}
     }
@@ -50,26 +51,45 @@ class UserForm extends Component {
   render() {
     const {handleSubmit, errors} = this.props
     const renderedErrorsLi = errors.map((error, i) => <li key={i}>{error}</li>)
+    let NameField;
+    if (this.props.action === 'signup') {
+      NameField = <div>
+        <label className="uk-form-label" htmlFor="name">Name (optional)</label>
+        <div className="uk-form-controls">
+            <Field
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange.bind(this)}
+              className="uk-input uk-width-medium"
+              component="input"
+              id="name"
+              type="text"
+              placeholder="Name"
+            /><br /><br />
+          </div>
+        </div>
+    }
     return (
       <form className="uk-form-stacked" onSubmit={handleSubmit(this.handleSubmit)}>
         {errors.length > 0 ? <ul className="uk-alert-danger">{renderedErrorsLi}</ul> : null}
         <div className="uk-margin">
-            <label className="uk-form-label" htmlFor="username">Username</label>
-            <div className="uk-form-controls">
-                <Field
-                  name="username"
-                  value={this.state.username}
-                  onChange={this.handleChange.bind(this)}
-                  className="uk-input uk-width-medium"
-                  component="input"
-                  id="username"
-                  type="text"
-                  placeholder="Username"
-                /><br />
-              {!!this.state.usernameErrors.username ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : <small><font color="white">.</font></small>}
-            </div>
-            <label className="uk-form-label" htmlFor="password">Password</label>
-            <div className="uk-form-controls">
+          {NameField}
+          <label className="uk-form-label" htmlFor="username">Username*</label>
+          <div className="uk-form-controls">
+              <Field
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange.bind(this)}
+                className="uk-input uk-width-medium"
+                component="input"
+                id="username"
+                type="text"
+                placeholder="Username"
+              /><br />
+            {!!this.state.usernameErrors.username ? <small className="uk-alert-danger">{this.state.usernameErrors.username}</small> : <small><font color="white">.</font></small>}
+          </div>
+          <label className="uk-form-label" htmlFor="password">Password*</label>
+          <div className="uk-form-controls">
               <Field
                 name="password"
                 value={this.state.password}
