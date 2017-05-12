@@ -1,6 +1,9 @@
 import React from 'react'
 
-const Applications = () => <div>Applications</div>
+const Dashboard = () =>
+  <div>
+    <h1 className="uk-heading-line uk-text-center uk-padding"><span>My Job Dashboard</span></h1>
+  </div>
 
 
-export default Applications
+export default Dashboard
