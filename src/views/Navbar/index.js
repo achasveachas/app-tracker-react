@@ -32,8 +32,8 @@ class Navbar extends Component {
             this.props.isAuthenticated ?
             <nav className="uk-navbar-container navbar uk-navbar">
               <div className="uk-navbar-left">
-                <ul className="uk-navbar-nav">
-                  <li><NavLink to="/applications">Home</NavLink></li>
+                <ul className="uk-navbar-nav uk-iconnav">
+                  <li><NavLink to="/">Home</NavLink></li>
                   <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
                 </ul>
               </div>
