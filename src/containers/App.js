@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.props.logout} currentUser={this.props.currentUser.username}/>
+          <Navbar isAuthenticated={this.props.isAuthenticated} logout={this.props.logout} currentUser={this.props.currentUser.name || this.props.currentUser.username}/>
           <Switch>
             <Route exact path="/" render={() => (
               this.props.isAuthenticated ? (
