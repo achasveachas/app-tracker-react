@@ -37,10 +37,10 @@ export const signup = (user, router) => {
         dispatch(reset('signup'))
         router.history.replace('/dashboard')
       })
-      .catch((err) => {
-        console.log(err)
-        dispatch(authFailure(err))
-        throw new SubmissionError(err)
+      .catch((errors) => {
+        console.log(errors)
+        dispatch(authFailure(errors))
+        throw new SubmissionError(errors)
       })
   }
 }
@@ -59,6 +59,7 @@ export const login = (user, router) => {
       .catch((errors) => {
         console.log(errors)
         dispatch(authFailure(errors))
+        throw new SubmissionError(errors)
       })
   }
 }
