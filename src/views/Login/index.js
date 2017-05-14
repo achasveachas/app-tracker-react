@@ -17,7 +17,7 @@ class Login extends Component {
   render() {
     return(
       <div className="uk-position-center">
-        <h2 className="uk-heading-line uk-text-center"><span>Sign Up:</span></h2>
+        <h2 className="uk-heading-line uk-text-center"><span>Log In:</span></h2>
         <UserForm action="login" onSubmit={this.handleLogin} errors={this.props.authErrors}/>
       </div>
     )
