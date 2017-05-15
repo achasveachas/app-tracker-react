@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
+import { getApplications } from '../../../redux/modules/Applications/actions'
 import ApplicationRow from '../ApplicationRow'
 
 class ApplicationsTable extends Component {
 
-  constructor(props) {
-    super(props)
+  componentDidMount() {
+    this.props.getApplications(this.props.currentUser.id)
   }
 
   render() {
@@ -42,4 +43,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(ApplicationsTable)
+export default connect(mapStateToProps, { getApplications })(ApplicationsTable)

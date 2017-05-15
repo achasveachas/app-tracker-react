@@ -31,7 +31,7 @@ export const deleteApplication = (id) => {
 
 export const getApplications = (user_id) => {
   return dispatch => {
-    return ApiServices.get(`/users/#{user_id}/applications`)
+    return ApiServices.get("/users/" + user_id + "/applications")
       .then(response => {
         dispatch(gotApplications(response.applications))
       })

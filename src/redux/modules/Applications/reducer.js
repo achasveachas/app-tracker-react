@@ -1,9 +1,6 @@
-import DATA from "./data"
-
 const initialState = {
-  applications: DATA,
-  currentApplication: {},
-  fetchingApplications: false
+  applications: [],
+  currentApplication: {}
 }
 
 export default (state = initialState, action) => {
@@ -12,8 +9,7 @@ export default (state = initialState, action) => {
     case 'GOT_APPLICATIONS':
       return {
         ...state,
-        applications: action.applications,
-        fetchingApplications: false
+        applications: action.applications
       }
 
     case 'ADD_APPLICATION':
