@@ -1,3 +1,10 @@
+export const gotApplications = (applications) => {
+  return {
+    type: 'GOT_APPLICATIONS',
+    applications: applications
+  }
+}
+
 export const addApplication = (application) => {
   return {
     type: 'ADD_APPLICATION',

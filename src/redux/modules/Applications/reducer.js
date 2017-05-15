@@ -8,6 +8,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch(action.type) {
 
+    case 'GOT_APPLICATIONS':
+      return {
+        ...state,
+        applications: action.applications
+      }
+
     case 'ADD_APPLICATION':
       return {
         ...state,
