@@ -24,7 +24,6 @@ export default (state = initialState, action) => {
             ]
         }
 
-
     case 'DELETE_APPLICATION':
       return {
         ...state,
