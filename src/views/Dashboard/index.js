@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 
 import ApplicationsTable from '../components/ApplicationsTable'
 import NewApplicationButton from '../components/NewApplicationButton'
+import ApplicationForm from '../components/Forms/application'
 
 class Dashboard extends Component {
 
@@ -14,13 +15,12 @@ class Dashboard extends Component {
       modalIsOpen: false
     }
 
-    this.openModal = this.openModal.bind(this)
-    this.closeModal = this.closeModal.bind(this)
   }
-  openModal() {
-    this.setState({modalIsOpen: true})
-  }
-  closeModal() {
+
+  openModal = () => this.setState({modalIsOpen: true})
+
+  handleSubmit = (event) => {
+    event.preventDefault()
     this.setState({modalIsOpen: false})
   }
 
@@ -33,9 +33,11 @@ class Dashboard extends Component {
         <NewApplicationButton />
         <Modal
           isOpen={this.state.modalIsOpen}
-          contentLabel="Modal">
-          <h1>Test Modal</h1>
-          <button type="button" onClick={this.closeModal}>Close</button>
+          contentLabel="Modal"
+          data-uk-modal
+          onSubmit={this.handleSubmit}>
+          <h1 className="uk-heading-line uk-text-center uk-padding">Application</h1>
+          <ApplicationForm />
         </Modal>
 
       </div>
