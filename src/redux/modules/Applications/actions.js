@@ -29,14 +29,13 @@ export const deleteApplication = (id) => {
   }
 }
 
-
 export const getApplications = (user_id) => {
-  return dispatch = {
+  return dispatch => {
     return ApiServices.get(`/users/#{user_id}/applications`)
       .then(response => {
         dispatch(gotApplications(response.applications))
       })
-      .catch(errors => {
+      .catch((errors) => {
         console.log(errors);
       })
   }
