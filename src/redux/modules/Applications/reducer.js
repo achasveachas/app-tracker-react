@@ -1,6 +1,5 @@
 const initialState = {
-  applications: [],
-  currentApplication: {}
+  applications: []
 }
 
 export default (state = initialState, action) => {
