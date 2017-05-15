@@ -1,5 +1,7 @@
+import DATA from "./data"
+
 const initialState = {
-  applications: [],
+  applications: DATA,
   currentApplication: {}
 }
 
