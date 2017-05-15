@@ -11,6 +11,8 @@ class ApplicationsTable extends Component {
 
   render() {
 
+    const RenderedRows = this.props.applications.map(app => <ApplicationRow application={app} />)
+
     return (
     <div className="uk-overflow-auto">
       <table className="uk-table uk-table-hover uk-table-divider">
@@ -23,9 +25,7 @@ class ApplicationsTable extends Component {
           </tr>
         </thead>
         <tbody>
-          <ApplicationRow />
-          <ApplicationRow />
-          <ApplicationRow />
+          {RenderedRows}
         </tbody>
 
       </table>
