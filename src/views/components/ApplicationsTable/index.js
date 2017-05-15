@@ -12,7 +12,9 @@ class ApplicationsTable extends Component {
 
   render() {
 
-    const RenderedRows = this.props.applications.map(app => <ApplicationRow key={app.id} application={app} />)
+    const RenderedRows = this.props.applications
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .map(app => <ApplicationRow key={app.id} application={app} />)
 
     return (
     <div className="uk-overflow-auto">
