@@ -11,7 +11,7 @@ class ApplicationsTable extends Component {
 
   render() {
 
-    const RenderedRows = this.props.applications.map(app => <ApplicationRow application={app} />)
+    const RenderedRows = this.props.applications.map(app => <ApplicationRow key={app.id} application={app} />)
 
     return (
     <div className="uk-overflow-auto">

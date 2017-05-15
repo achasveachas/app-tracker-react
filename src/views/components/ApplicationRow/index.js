@@ -1,11 +1,11 @@
 import React from 'react'
 
-const ApplicationRow = () =>
+const ApplicationRow = (props) =>
         <tr>
-          <td>Hello World</td>
-          <td>Hello World</td>
-          <td></td>
-          <td></td>
+          <td>{props.application.company}</td>
+          <td>{props.application.date}</td>
+          <td>{props.application.action}</td>
+          <td>{props.application.completed ? 	<span>&#x2713;</span> :	<span>&#x2717;</span> }</td>
         </tr>
 
 export default ApplicationRow
