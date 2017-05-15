@@ -1,4 +1,5 @@
 import React from 'react'
+import ApplicationRow from '../ApplicationRow'
 
 const ApplicationsTable = () =>
   <div className="uk-overflow-auto">
@@ -12,18 +13,9 @@ const ApplicationsTable = () =>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Hello World</td>
-          <td>Hello World</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Hello World</td>
-          <td>Hello World</td>
-          <td></td>
-          <td></td>
-        </tr>
+        <ApplicationRow />
+        <ApplicationRow />
+        <ApplicationRow />
       </tbody>
 
     </table>

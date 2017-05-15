@@ -1,6 +1,6 @@
 
 import React from 'react'
-import ApplicationsTable from '../ApplicationsTable'
+import ApplicationsTable from '../components/ApplicationsTable'
 
 const Dashboard = () =>
   <div>
