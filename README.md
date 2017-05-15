@@ -2,7 +2,7 @@
 
 ### Overview
 
-This is a job tracking application where job applicants can keep track of the different applications they've submitted, the various actions they've taken in regards to said applications (e-mails, communications, meetings, interviews, etc.)
+This is a job tracking application where job applicants can keep track of the different applications they've submitted, and the various actions they've taken in regards to said applications (e-mails, communications, meetings, interviews, etc.)
 
 ### Technical Specs
 
