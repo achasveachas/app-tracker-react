@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
+import { connect } from 'react-redux'
 
 
 class ApplicationForm extends Component {
@@ -64,6 +65,11 @@ class ApplicationForm extends Component {
   }
 }
 
-export default reduxForm({
-  form: 'application'
-})(ApplicationForm);
+const mapStateToProps = (state) => {
+  return { currentUser: state.currentUser }
+}
+
+ApplicationForm = reduxForm({form: 'application'})(ApplicationForm)
+ApplicationForm = connect(mapStateToProps)(ApplicationForm)
+
+export default ApplicationForm
