@@ -15,10 +15,9 @@ class ApplicationForm extends Component {
   }
 
   handleSubmit = data => this.props.onSubmit(data)
-  handleClose = () => this.props.onClose()
 
   render() {
-    const {handleSubmit, handleClose} = this.props
+    const {handleSubmit} = this.props
     return (
       <div>
         <form className="uk-form-blank" onSubmit={handleSubmit(this.handleSubmit)}>

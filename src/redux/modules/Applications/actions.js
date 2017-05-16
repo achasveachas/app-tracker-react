@@ -31,6 +31,13 @@ export const setCurrentApplication = (app_id) => {
   }
 }
 
+export const deleteApplication = (id) => {
+  return {
+    type: 'DELETE_APPLICATION',
+    id: id
+  }
+}
+
 // Async actions
 
 export const newApplication = (application, user_id) => {
@@ -48,18 +55,24 @@ export const newApplication = (application, user_id) => {
   }
 }
 
-export const deleteApplication = (id) => {
-  return {
-    type: 'DELETE_APPLICATION',
-    id: id
-  }
-}
 
 export const getApplications = (user_id) => {
   return dispatch => {
     return ApiServices.get("/users/" + user_id + "/applications")
       .then(response => {
         dispatch(gotApplications(response.applications))
+      })
+      .catch((errors) => {
+        console.log(errors);
+      })
+  }
+}
+
+export const removeItem = (user_id, app_id) => {
+  return dispatch => {
+    return ApiServices.delete("/users/" + user_id + "/applications/" + app_id)
+      .then(() => {
+        dispatch(deleteApplication(app_id))
       })
       .catch((errors) => {
         console.log(errors);
