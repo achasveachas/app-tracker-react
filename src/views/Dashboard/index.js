@@ -31,14 +31,16 @@ class Dashboard extends Component {
     return (
       <div>
         <h1 className="uk-heading-line uk-text-center uk-padding"><span>My Job Dashboard</span></h1>
-        <NewApplicationButton onClick={this.openModal} onClose={this.closeModal}/>
+        <NewApplicationButton onClick={this.openModal}/>
         <ApplicationsTable />
-        <NewApplicationButton onClick={this.openModal} onClose={this.closeModal}/>
+        <NewApplicationButton onClick={this.openModal}/>
         <Modal
           isOpen={this.state.modalIsOpen}
-          contentLabel="Modal">
+          contentLabel="Modal"
+          onRequestClose={this.closeModal}>
           <h1 className="uk-heading-line uk-text-center uk-padding">New Application</h1>
           <ApplicationForm onSubmit={this.handleNewApplication}/>
+          <button type="button" className="uk-button uk-margin-bottom uk-margin-right uk-button-default uk-position-bottom-right" onClick={this.closeModal}>X</button>
         </Modal>
 
       </div>

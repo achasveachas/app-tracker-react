@@ -9,7 +9,7 @@ class ApplicationForm extends Component {
     super(props)
     const currentApplication = this.props.currentApplication
     this.state = {
-      company: currentApplication ? currentApplication.company : "",
+      company: currentApplication ? currentApplication[0].company : "",
       date: ""
     }
   }
@@ -17,56 +17,43 @@ class ApplicationForm extends Component {
   handleSubmit = data => this.props.onSubmit(data)
   handleClose = () => this.props.onClose()
 
-  handleChange(event) {
-    if (event.target.name === 'company') {
-      this.setState({
-        company: event.target.value
-      })
-    } else if (event.target.name === 'date') {
-      this.setState({
-        date: event.target.value
-      })
-    }
-  }
-
   render() {
-    const {handleSubmit} = this.props
+    const {handleSubmit, handleClose} = this.props
     return (
-      <form className="uk-form-blank" onSubmit={handleSubmit(this.handleSubmit)}>
-        <div className="uk-margin">
-          <label className="uk-form-label" htmlFor="company">Company:</label>
-          <Field
-            name="company"
-            value={this.state.company}
-            onChange={this.handleChange.bind(this)}
-            className="uk-input uk-width-medium uk-form-blank uk-form-controls"
-            component="input"
-            id="company"
-            type="text"
-            placeholder="(Company Name)"
-          />
-          <label className="uk-form-label" htmlFor="date">Date:</label>
-          <Field
-            name="date"
-            value={this.state.date}
-            onChange={this.handleChange.bind(this)}
-            className="uk-input uk-width-small uk-form-controls uk-form-blank"
-            component="input"
-            id="date"
-            type="date"
-          /><br />
-          <div className="uk-position-bottom-center">
-            <input type="submit" className="uk-button uk-margin-bottom uk-margin-right uk-button-default" value="Save" />
-            <button className="uk-button uk-margin-bottom uk-button-default" onClick={this.handleClose}>Cancel</button>
+      <div>
+        <form className="uk-form-blank" onSubmit={handleSubmit(this.handleSubmit)}>
+          <div className="uk-margin">
+            <label className="uk-form-label" htmlFor="company">Company:</label>
+            <Field
+              name="company"
+              value={this.state.company}
+              className="uk-input uk-width-medium uk-form-blank uk-form-controls"
+              component="input"
+              id="company"
+              type="text"
+              placeholder="(Company Name)"
+            />
+            <label className="uk-form-label" htmlFor="date">Date:</label>
+            <Field
+              name="date"
+              value={this.state.date}
+              className="uk-input uk-width-small uk-form-controls uk-form-blank"
+              component="input"
+              id="date"
+              type="date"
+            /><br />
+            <div className="uk-position-bottom-center">
+              <input type="submit" className="uk-button uk-margin-bottom uk-margin-right uk-button-default" value="Save" />
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return { currentApplication: state.currentApplication }
+  return { currentApplication: state.applications.currentApplication }
 }
 
 ApplicationForm = reduxForm({form: 'application'})(ApplicationForm)
