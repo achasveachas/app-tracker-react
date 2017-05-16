@@ -1,10 +1,21 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import Modal from 'react-modal'
 
 import { getApplications, setCurrentApplication, removeItem } from '../../../redux/modules/Applications/actions'
 import ApplicationRow from '../ApplicationRow'
+import ApplicationForm from '../../components/Forms/application'
+
 
 class ApplicationsTable extends Component {
+
+  constructor(props) {
+
+    super(props)
+    this.state = {
+      modalIsOpen: false
+    }
+  }
 
   componentDidMount() {
     this.props.getApplications(this.props.currentUser.id)
@@ -12,40 +23,55 @@ class ApplicationsTable extends Component {
 
   setApplication = (id) => this.props.setCurrentApplication(id)
   removeItem = (user_id, app_id) => this.props.removeItem(user_id, app_id)
+  openModal = () => this.setState({modalIsOpen: true})
+  closeModal = () => this.setState({modalIsOpen: false})
 
+  handleRowClick = (id) => {
+    this.setApplication(id)
+    this.openModal()
+  }
 
   render() {
 
     const RenderedRows = this.props.applications
       .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .map((app, index) => <ApplicationRow key={index} application={app} user_id={this.props.currentUser.id} onClick={this.setApplication} onDelete={this.removeItem}/>)
+      .map((app, index) => <ApplicationRow key={index} application={app} user_id={this.props.currentUser.id} onClick={this.handleRowClick} onDelete={this.removeItem}/>)
 
     return (
-    <div className="uk-overflow-auto">
-      {this.props.applications.length > 0 ?
-        <table className="uk-table uk-table-hover uk-table-divider">
-          <thead>
-            <tr>
-              <th>Company</th>
-              <th>Date</th>
-              <th className="uk-table-expand">Action</th>
-              <th className="uk-table-shrink">Completed</th>
-              <th className="uk-table-shrink"></th>
-            </tr>
-          </thead>
-          <tbody>
-            {RenderedRows}
-          </tbody>
+      <div className="uk-overflow-auto">
+        {this.props.applications.length > 0 ?
+          <table className="uk-table uk-table-hover uk-table-divider">
+            <thead>
+              <tr>
+                <th>Company</th>
+                <th>Date</th>
+                <th className="uk-table-expand">Action</th>
+                <th className="uk-table-shrink">Completed</th>
+                <th className="uk-table-shrink"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {RenderedRows}
+            </tbody>
 
-        </table>
-      :
-        <div>
-          <h2 className="uk-heading-line uk-text-center"><span>You do not have any applications at his time</span></h2>
-          <h3 className="uk-heading-line uk-text-center"><span>Click on the "New Application" button to add a new application</span></h3>
-        </div>
-      }
-    </div>
-  )}
+          </table>
+        :
+          <div>
+            <h2 className="uk-heading-line uk-text-center"><span>You do not have any applications at his time</span></h2>
+            <h3 className="uk-heading-line uk-text-center"><span>Click on the "New Application" button to add a new application</span></h3>
+          </div>
+        }
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          contentLabel="Modal"
+          onRequestClose={this.closeModal}>
+          <h1 className="uk-heading-line uk-text-center uk-padding"><span>View/Edit Application</span></h1>
+          <ApplicationForm onSubmit={this.handleNewApplication}/>
+          <button type="button" className="uk-button uk-margin-bottom uk-margin-right uk-button-default uk-position-bottom-right" onClick={this.closeModal}>X</button>
+        </Modal>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = (state) => {
