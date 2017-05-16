@@ -9,31 +9,30 @@ class ApplicationForm extends Component {
 
     this.state = {
       company: "",
-      password: "",
-      name: ""
+      date: ""
     }
   }
 
-  handleSubmit = () => this.props.onSubmit()
+  handleSubmit = data => this.props.onSubmit(data)
 
   handleChange(event) {
     if (event.target.name === 'company') {
       this.setState({
         company: event.target.value
       })
-    } else if (event.target.name === 'password') {
+    } else if (event.target.name === 'date') {
       this.setState({
-        password: event.target.value
+        date: event.target.value
       })
     }
   }
 
   render() {
-
+    const {handleSubmit} = this.props
     return (
-      <form className="uk-form-stacked" onSubmit={this.handleSubmit}>
+      <form className="uk-form-stacked" onSubmit={handleSubmit(this.handleSubmit)}>
         <div className="uk-margin">
-          <label className="uk-form-label" htmlFor="company">company*</label>
+          <label className="uk-form-label" htmlFor="company">Company</label>
           <div className="uk-form-controls">
               <Field
                 name="company"
@@ -46,20 +45,20 @@ class ApplicationForm extends Component {
                 placeholder="company"
               /><br />
           </div>
-          <label className="uk-form-label" htmlFor="password">Password*</label>
+          <label className="uk-form-label" htmlFor="date">Date</label>
           <div className="uk-form-controls">
               <Field
-                name="password"
-                value={this.state.password}
+                name="date"
+                value={this.state.date}
                 onChange={this.handleChange.bind(this)}
                 className="uk-input uk-width-medium"
                 component="input"
-                id="password"
-                type="password"
+                id="date"
+                type="date"
                 placeholder="company"
               /><br />
           </div><br />
-        <input type="submit" className="uk-button uk-button-default uk-position-bottom-center" value="Save" />
+          <input type="submit" className="uk-button uk-button-default uk-position-bottom-center" value="Save" />
         </div>
       </form>
     )
