@@ -61,6 +61,21 @@ export const newApplication = (application, user_id) => {
   }
 }
 
+export const updateApplication = (application, user_id) => {
+  return dispatch => {
+    return ApiServices.patch("/users/" + user_id + "/applications", application)
+      .then(response => {
+        const { application } = response
+        dispatch(editApplication(application))
+        dispatch(reset('application'))
+      })
+      .catch((errors) => {
+        console.log(errors)
+        throw new SubmissionError(errors)
+      })
+  }
+}
+
 
 export const getApplications = (user_id) => {
   return dispatch => {
