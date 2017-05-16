@@ -1,6 +1,6 @@
 const initialState = {
   applications: [],
-  currentApplication: null
+  currentApplication: {}
 }
 
 export default (state = initialState, action) => {
@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case 'SET_CURRENT_APPLICATION':
       return {
         ...state,
-        currentApplication: state.applications.filter(app => app.id === action.app_id)
+        currentApplication: state.applications.filter(app => app.id === action.app_id)[0]
       }
 
     case 'GOT_APPLICATIONS':
@@ -33,7 +33,7 @@ export default (state = initialState, action) => {
               editedApplication,
               ...state.applications.slice(action.index + 1)
             ],
-            currentApplication: null
+            currentApplication: {}
         }
 
     case 'DELETE_APPLICATION':
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
               ...state.applications.slice(0, action.index),
               ...state.applications.slice(action.index + 1)
             ],
-            currentApplication: null
+            currentApplication: {}
       }
 
     default:

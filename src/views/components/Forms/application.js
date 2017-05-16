@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, initialize } from 'redux-form'
 import { connect } from 'react-redux'
 
+const form = reduxForm({
+  form: 'application'
+})
+
+const renderField = field => (
+  <div>
+    <label class="uk-form-label">{field.input.label}</label>
+    <input class="uk-input uk-width-small uk-form-controls uk-form-blank" {...field.input}/>
+  </div>
+)
 
 class ApplicationForm extends Component {
 
@@ -9,41 +19,47 @@ class ApplicationForm extends Component {
     super(props)
     const currentApplication = this.props.currentApplication
     this.state = {
-      company: currentApplication ? currentApplication[0].company : "",
+      company: currentApplication.company || "",
       date: ""
     }
   }
 
-  handleSubmit = data => this.props.onSubmit(data)
+  componentDidMount() {
+    this.handleInitialize()
+  }
+
+  handleInitialize() {
+    const initData = {
+      "company": this.props.currentApplication.company,
+      "date": this.props.currentApplication.date
+    }
+    this.props.initialize(initData)
+  }
+
+  handleFormSubmit = data => this.props.onSubmit(data)
 
   render() {
     const {handleSubmit} = this.props
     return (
       <div>
-        <form className="uk-form-blank" onSubmit={handleSubmit(this.handleSubmit)}>
+        <form className="uk-form-blank" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div className="uk-margin">
-            <label className="uk-form-label" htmlFor="company">Company:</label>
             <Field
               name="company"
-              value={this.state.company}
-              className="uk-input uk-width-medium uk-form-blank uk-form-controls"
-              component="input"
-              id="company"
               type="text"
+              className="uk-input uk-width-small uk-form-controls uk-form-blank"
+              component={renderField}
+              label="Company:"
               placeholder="(Company Name)"
             />
-            <label className="uk-form-label" htmlFor="date">Date:</label>
             <Field
               name="date"
-              value={this.state.date}
-              className="uk-input uk-width-small uk-form-controls uk-form-blank"
-              component="input"
-              id="date"
               type="date"
-            /><br />
-            <div className="uk-position-bottom-center">
-              <input type="submit" className="uk-button uk-margin-bottom uk-margin-right uk-button-default" value="Save" />
-            </div>
+              className="uk-input uk-width-small uk-form-controls uk-form-blank"
+              component={renderField}
+              label="Date"
+            /><br /><br /><br />
+          <button action="submit" className="uk-button uk-margin-bottom uk-margin-right uk-button-default">Save</button>
           </div>
         </form>
       </div>
@@ -55,7 +71,6 @@ const mapStateToProps = (state) => {
   return { currentApplication: state.applications.currentApplication }
 }
 
-ApplicationForm = reduxForm({form: 'application'})(ApplicationForm)
-ApplicationForm = connect(mapStateToProps)(ApplicationForm)
+ApplicationForm = connect(mapStateToProps)(form(ApplicationForm))
 
 export default ApplicationForm
