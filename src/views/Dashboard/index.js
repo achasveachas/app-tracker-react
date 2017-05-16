@@ -33,7 +33,7 @@ class Dashboard extends Component {
         <h1 className="uk-heading-line uk-text-center uk-padding"><span>My Job Dashboard</span></h1>
         <NewApplicationButton onClick={this.openModal} onClose={this.closeModal}/>
         <ApplicationsTable />
-        <NewApplicationButton />
+        <NewApplicationButton onClick={this.openModal} onClose={this.closeModal}/>
         <Modal
           isOpen={this.state.modalIsOpen}
           contentLabel="Modal">

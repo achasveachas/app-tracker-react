@@ -11,7 +11,7 @@ class ApplicationsTable extends Component {
   }
 
   setApplication = (id) => this.props.setCurrentApplication(id)
-  
+
 
   render() {
 
@@ -21,20 +21,27 @@ class ApplicationsTable extends Component {
 
     return (
     <div className="uk-overflow-auto">
-      <table className="uk-table uk-table-hover uk-table-divider">
-        <thead>
-          <tr>
-            <th>Company</th>
-            <th>Date</th>
-            <th>Action</th>
-            <th>Completed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {RenderedRows}
-        </tbody>
+      {this.props.applications.length > 0 ?
+        <table className="uk-table uk-table-hover uk-table-divider">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Date</th>
+              <th>Action</th>
+              <th>Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RenderedRows}
+          </tbody>
 
-      </table>
+        </table>
+      :
+        <div>
+          <h2 className="uk-heading-line uk-text-center"><span>You do not have any applications at his time</span></h2>
+          <h3 className="uk-heading-line uk-text-center"><span>Click on the "New Application" button to add a new application</span></h3>
+        </div>
+      }
     </div>
   )}
 }
