@@ -24,6 +24,13 @@ export const editApplication = (application) => {
   }
 }
 
+export const setCurrentApplication = (app_id) => {
+  return {
+    type: 'SET_CURRENT_APPLICATION',
+    app_id: app_id
+  }
+}
+
 // Async actions
 
 export const newApplication = (application, user_id) => {
