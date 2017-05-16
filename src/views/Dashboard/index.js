@@ -20,17 +20,18 @@ class Dashboard extends Component {
   }
 
   openModal = () => this.setState({modalIsOpen: true})
+  closeModal = () => this.setState({modalIsOpen: false})
 
   handleNewApplication = (data) => {
     this.props.newApplication({application: data}, this.props.currentUser.id)
-    this.setState({modalIsOpen: false})
+    this.closeModal()
   }
 
   render() {
     return (
       <div>
         <h1 className="uk-heading-line uk-text-center uk-padding"><span>My Job Dashboard</span></h1>
-        <NewApplicationButton onClick={this.openModal}/>
+        <NewApplicationButton onClick={this.openModal} onClose={this.closeModal}/>
         <ApplicationsTable />
         <NewApplicationButton />
         <Modal
