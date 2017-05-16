@@ -31,6 +31,12 @@ export const setCurrentApplication = (app_id) => {
   }
 }
 
+export const clearCurrentApplication = () => {
+  return {
+    type: 'CLEAR_CURRENT_APPLICATION'
+  }
+}
+
 export const deleteApplication = (id) => {
   return {
     type: 'DELETE_APPLICATION',

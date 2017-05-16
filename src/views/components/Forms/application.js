@@ -56,7 +56,7 @@ class ApplicationForm extends Component {
               component={renderField}
               label="Date"
             /><br /><br /><br />
-          <button action="submit" className="uk-button uk-margin-bottom uk-margin-right uk-button-default">Save</button>
+          <button action="submit" className="uk-button uk-position-bottom-center uk-margin-bottom uk-margin-right uk-button-default">Save</button>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import Modal from 'react-modal'
 import { connect } from 'react-redux';
 
-import { newApplication } from '../../redux/modules/Applications/actions'
+import { newApplication, clearCurrentApplication } from '../../redux/modules/Applications/actions'
 import ApplicationsTable from '../components/ApplicationsTable'
 import NewApplicationButton from '../components/NewApplicationButton'
 import ApplicationForm from '../components/Forms/application'
@@ -22,6 +22,11 @@ class Dashboard extends Component {
   openModal = () => this.setState({modalIsOpen: true})
   closeModal = () => this.setState({modalIsOpen: false})
 
+  openApplicationForm = () => {
+    this.props.clearCurrentApplication()
+    this.openModal()
+  }
+
   handleNewApplication = (data) => {
     this.props.newApplication({application: data}, this.props.currentUser.id)
     this.closeModal()
@@ -31,9 +36,9 @@ class Dashboard extends Component {
     return (
       <div>
         <h1 className="uk-heading-line uk-text-center uk-padding"><span>My Job Dashboard</span></h1>
-        <NewApplicationButton onClick={this.openModal}/>
+        <NewApplicationButton onClick={this.openApplicationForm}/>
         <ApplicationsTable />
-        <NewApplicationButton onClick={this.openModal}/>
+        <NewApplicationButton onClick={this.openApplicationForm}/>
         <Modal
           isOpen={this.state.modalIsOpen}
           contentLabel="Modal"
@@ -52,4 +57,4 @@ const mapStateToProps = (state) => {
     currentUser: state.auth.currentUser
   }
 }
-export default connect(mapStateToProps, { newApplication })(Dashboard)
+export default connect(mapStateToProps, { newApplication, clearCurrentApplication })(Dashboard)

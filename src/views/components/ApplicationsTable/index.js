@@ -28,8 +28,9 @@ class ApplicationsTable extends Component {
             <tr>
               <th>Company</th>
               <th>Date</th>
-              <th>Action</th>
-              <th>Completed</th>
+              <th className="uk-table-expand">Action</th>
+              <th className="uk-table-shrink">Completed</th>
+              <th className="uk-table-shrink"></th>
             </tr>
           </thead>
           <tbody>
