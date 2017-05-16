@@ -44,9 +44,12 @@ class ApplicationsTable extends Component {
             <thead>
               <tr>
                 <th>Company</th>
+                <th>Job Title</th>
+                <th>Contact</th>
                 <th>Date</th>
-                <th className="uk-table-expand">Action</th>
-                <th className="uk-table-shrink">Completed</th>
+                <th>Action</th>
+                <th className="uk-table-expand">Notes</th>
+                <th className="uk-table-shrink uk-table-middle">Completed</th>
                 <th className="uk-table-shrink"></th>
               </tr>
             </thead>
