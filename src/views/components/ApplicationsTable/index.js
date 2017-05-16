@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 
-import { getApplications } from '../../../redux/modules/Applications/actions'
+import { getApplications, setCurrentApplication } from '../../../redux/modules/Applications/actions'
 import ApplicationRow from '../ApplicationRow'
 
 class ApplicationsTable extends Component {
@@ -10,11 +10,14 @@ class ApplicationsTable extends Component {
     this.props.getApplications(this.props.currentUser.id)
   }
 
+  setApplication = (id) => this.props.setCurrentApplication(id)
+  
+
   render() {
 
     const RenderedRows = this.props.applications
       .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .map(app => <ApplicationRow key={app.id} application={app} />)
+      .map(app => <ApplicationRow key={app.id} application={app} onClick={this.setApplication} />)
 
     return (
     <div className="uk-overflow-auto">
@@ -45,4 +48,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getApplications })(ApplicationsTable)
+export default connect(mapStateToProps, { getApplications, setCurrentApplication })(ApplicationsTable)

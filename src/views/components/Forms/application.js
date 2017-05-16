@@ -29,7 +29,7 @@ class ApplicationForm extends Component {
   }
 
   render() {
-    const {handleSubmit, onClose} = this.props
+    const {handleSubmit} = this.props
     return (
       <form className="uk-form-blank" onSubmit={handleSubmit(this.handleSubmit)}>
         <div className="uk-margin">
