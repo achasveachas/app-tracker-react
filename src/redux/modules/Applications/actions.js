@@ -1,4 +1,6 @@
+import { reset, SubmissionError } from 'redux-form';
 import ApiServices from '../../../services/Api'
+
 
 export const gotApplications = (applications) => {
   return {
@@ -19,6 +21,23 @@ export const editApplication = (application) => {
     type: 'EDIT_APPLICATION',
     id: application.id,
     application: application
+  }
+}
+
+// Async actions
+
+export const newApplication = (application, user_id) => {
+  return dispatch => {
+    return ApiServices.post("/users/" + user_id + "/applications", application)
+      .then(response => {
+        const { application } = response
+        dispatch(addApplication(application))
+        dispatch(reset('application'))
+      })
+      .catch((errors) => {
+        console.log(errors)
+        throw new SubmissionError(errors)
+      })
   }
 }
 
