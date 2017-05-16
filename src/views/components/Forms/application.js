@@ -7,9 +7,9 @@ class ApplicationForm extends Component {
 
   constructor(props) {
     super(props)
-
+    const currentApplication = this.props.currentApplication
     this.state = {
-      company: "",
+      company: currentApplication ? currentApplication.company : "",
       date: ""
     }
   }
@@ -66,7 +66,7 @@ class ApplicationForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser }
+  return { currentApplication: state.currentApplication }
 }
 
 ApplicationForm = reduxForm({form: 'application'})(ApplicationForm)
