@@ -71,8 +71,8 @@ export const getApplications = (user_id) => {
 export const removeItem = (user_id, app_id) => {
   return dispatch => {
     return ApiServices.delete("/users/" + user_id + "/applications/" + app_id)
-      .then(() => {
-        dispatch(deleteApplication(app_id))
+      .then((response) => {
+        dispatch(gotApplications(response.applications))
       })
       .catch((errors) => {
         console.log(errors);

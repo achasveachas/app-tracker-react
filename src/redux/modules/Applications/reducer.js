@@ -28,21 +28,21 @@ export default (state = initialState, action) => {
       const application = state.applications.filter(a => a.id === action.application.id)[0]
       const editedApplication = Object.assign({}, application, action.application)
       return {
-        ...state,
         applications: [
               ...state.applications.slice(0, action.index),
               editedApplication,
               ...state.applications.slice(action.index + 1)
-            ]
+            ],
+            currentApplication: null
         }
 
     case 'DELETE_APPLICATION':
       return {
-        ...state,
         applications: [
               ...state.applications.slice(0, action.index),
               ...state.applications.slice(action.index + 1)
-            ]
+            ],
+            currentApplication: null
       }
 
     default:
