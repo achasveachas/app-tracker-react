@@ -44,10 +44,11 @@ export default (state = initialState, action) => {
         }
 
     case 'DELETE_APPLICATION':
+      const deleteIndex = state.applications.findIndex(a => a.id === action.id)
       return {
         applications: [
-              ...state.applications.slice(0, action.index),
-              ...state.applications.slice(action.index + 1)
+              ...state.applications.slice(0, deleteIndex),
+              ...state.applications.slice(deleteIndex + 1)
             ],
             currentApplication: {}
       }
