@@ -43,9 +43,9 @@ class Dashboard extends Component {
           isOpen={this.state.modalIsOpen}
           contentLabel="Modal"
           onRequestClose={this.closeModal}>
-          <h1 className="uk-heading-line uk-text-center uk-padding">New Application</h1>
+          <h1 className="uk-heading-line uk-text-center uk-padding"><span>New Application</span></h1>
           <ApplicationForm onSubmit={this.handleNewApplication}/>
-          <button type="button" className="uk-button uk-margin-bottom uk-margin-right uk-button-default uk-position-bottom-right" onClick={this.closeModal}>X</button>
+          <button type="button" className="uk-button uk-margin-top uk-margin-right uk-button-secondary uk-position-top-right" onClick={this.closeModal}>X</button>
         </Modal>
 
       </div>
