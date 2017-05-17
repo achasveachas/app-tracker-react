@@ -7,7 +7,7 @@ const form = reduxForm({
 })
 
 const renderField = field => (
-    <input className="uk-input uk-width-small uk-form-controls uk-form-blank" {...field.input}/>
+    <input className="uk-input uk-width-small uk-form-blank uk-form-controls" {...field.input}/>
 )
 
 class ApplicationForm extends Component {
@@ -39,7 +39,7 @@ class ApplicationForm extends Component {
     const {handleSubmit} = this.props
     return (
       <div>
-        <form className="uk-form-blank" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div className="uk-margin">
             <label className="uk-form-label">Company:</label>
             <Field
