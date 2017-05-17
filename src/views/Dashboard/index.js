@@ -28,7 +28,7 @@ class Dashboard extends Component {
   }
 
   handleNewApplication = (data) => {
-    this.props.newApplication({application: data}, this.props.currentUser.id)
+    this.props.newApplication(data, this.props.currentUser.id)
     this.closeModal()
   }
 
@@ -54,7 +54,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    currentApplication: state.applications.currentApplication
   }
 }
 export default connect(mapStateToProps, { newApplication, clearCurrentApplication })(Dashboard)

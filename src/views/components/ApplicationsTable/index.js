@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
 
-import { getApplications, setCurrentApplication, removeItem } from '../../../redux/modules/Applications/actions'
+import { getApplications, setCurrentApplication, removeItem, updateApplication } from '../../../redux/modules/Applications/actions'
 import ApplicationRow from '../ApplicationRow'
 import ApplicationForm from '../../components/Forms/application'
 
@@ -29,6 +29,11 @@ class ApplicationsTable extends Component {
   handleRowClick = (id) => {
     this.setApplication(id)
     this.openModal()
+  }
+
+  handleUpdateApplication = (data) => {
+    this.props.updateApplication(data, this.props.currentUser.id, this.props.currentApplication.id)
+    this.closeModal()
   }
 
   render() {
@@ -69,7 +74,7 @@ class ApplicationsTable extends Component {
           contentLabel="Modal"
           onRequestClose={this.closeModal}>
           <h1 className="uk-heading-line uk-text-center uk-padding"><span>View/Edit Application</span></h1>
-          <ApplicationForm onSubmit={this.handleNewApplication}/>
+          <ApplicationForm onSubmit={this.handleUpdateApplication}/>
           <button type="button" className="uk-button uk-margin-bottom uk-margin-right uk-button-default uk-position-bottom-right" onClick={this.closeModal}>X</button>
         </Modal>
       </div>
@@ -86,4 +91,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getApplications, setCurrentApplication, removeItem })(ApplicationsTable)
+export default connect(mapStateToProps, { getApplications, setCurrentApplication, removeItem, updateApplication })(ApplicationsTable)

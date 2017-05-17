@@ -41,7 +41,7 @@ class ApplicationForm extends Component {
       <div>
         <form className="uk-form-blank" onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
           <div className="uk-margin">
-            <label class="uk-form-label">Company:</label>
+            <label className="uk-form-label">Company:</label>
             <Field
               name="company"
               type="text"
@@ -49,7 +49,7 @@ class ApplicationForm extends Component {
               label="Company:"
               placeholder="(Company Name)"
             />
-            <label class="uk-form-label">Date:</label>
+          <label className="uk-form-label">Date:</label>
             <Field
               name="date"
               type="date"

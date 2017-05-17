@@ -61,9 +61,9 @@ export const newApplication = (application, user_id) => {
   }
 }
 
-export const updateApplication = (application, user_id) => {
+export const updateApplication = (data, user_id, app_id) => {
   return dispatch => {
-    return ApiServices.patch("/users/" + user_id + "/applications", application)
+    return ApiServices.patch("/users/" + user_id + "/applications/" + app_id, data)
       .then(response => {
         const { application } = response
         dispatch(editApplication(application))
