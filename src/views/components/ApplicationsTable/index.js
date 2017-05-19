@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import { reset, SubmissionError } from 'redux-form';
 
-import { getApplications, setCurrentApplication, removeItem, editApplication } from '../../../redux/modules/Applications/actions'
+import { gotApplications, setCurrentApplication, removeItem, editApplication } from '../../../redux/modules/Applications/actions'
 import ApiServices from '../../../redux/services/Api'
 import ApplicationRow from '../ApplicationRow'
 import ApplicationForm from '../../components/Forms/application'
@@ -20,7 +20,15 @@ class ApplicationsTable extends Component {
   }
 
   componentDidMount() {
-    this.props.getApplications(this.props.currentUser.id)
+    const user_id = this.props.currentUser.id
+
+    return ApiServices.get("/users/" + user_id + "/applications")
+     .then(response => {
+       this.props.gotApplications(response.applications)
+     })
+     .catch((errors) => {
+       console.log(errors);
+     })
   }
 
   setApplication = (id) => this.props.setCurrentApplication(id)
@@ -114,4 +122,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getApplications, setCurrentApplication, removeItem, editApplication, reset })(ApplicationsTable)
+export default connect(mapStateToProps, { gotApplications, setCurrentApplication, removeItem, editApplication, reset })(ApplicationsTable)

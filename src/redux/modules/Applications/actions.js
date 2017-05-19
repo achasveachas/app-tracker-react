@@ -46,18 +46,6 @@ export const deleteApplication = (id) => {
 // Async actions
 
 
-export const getApplications = (user_id) => {
-  return dispatch => {
-    return ApiServices.get("/users/" + user_id + "/applications")
-      .then(response => {
-        dispatch(gotApplications(response.applications))
-      })
-      .catch((errors) => {
-        console.log(errors);
-      })
-  }
-}
-
 export const removeItem = (user_id, app_id) => {
   return dispatch => {
     return ApiServices.delete("/users/" + user_id + "/applications/" + app_id)
