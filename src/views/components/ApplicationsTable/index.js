@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal'
 import { reset, SubmissionError } from 'redux-form';
 
-import { gotApplications, setCurrentApplication, removeItem, editApplication } from '../../../redux/modules/Applications/actions'
+import { gotApplications, setCurrentApplication, deleteApplication, editApplication } from '../../../redux/modules/Applications/actions'
 import ApiServices from '../../../redux/services/Api'
 import ApplicationRow from '../ApplicationRow'
 import ApplicationForm from '../../components/Forms/application'
@@ -32,13 +32,23 @@ class ApplicationsTable extends Component {
   }
 
   setApplication = (id) => this.props.setCurrentApplication(id)
-  removeItem = (user_id, app_id) => this.props.removeItem(user_id, app_id)
   openModal = () => this.setState({modalIsOpen: true})
   closeModal = () => this.setState({modalIsOpen: false})
 
   handleRowClick = (id) => {
     this.setApplication(id)
     this.openModal()
+  }
+
+
+  removeItem = (user_id, app_id) => {
+    return ApiServices.delete("/users/" + user_id + "/applications/" + app_id, this.props.token)
+      .then(() => {
+        this.props.deleteApplication(app_id)
+      })
+      .catch((errors) => {
+        console.log(errors);
+      })
   }
 
   handleUpdateApplication = (data) => {
@@ -122,4 +132,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { gotApplications, setCurrentApplication, removeItem, editApplication, reset })(ApplicationsTable)
+export default connect(mapStateToProps, { gotApplications, setCurrentApplication, deleteApplication, editApplication, reset })(ApplicationsTable)
