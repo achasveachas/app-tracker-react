@@ -8,7 +8,7 @@ This is a job tracking application where job applicants can keep track of the di
 
 This app was built using ReactJS.
 
-It uses a Rails API with a PostgreSQL database for the back end. The API can be found [here](sleepy-cove-46703.herokuapp.com/api/v1/), and documentation for the API can be found in its GitHub README [here](https://github.com/achasveachas/app-tracker)
+It uses a Rails API with a PostgreSQL database for the back end. The API can be found [here](https://app-tracker-api.herokuapp.com/api/v1/), and documentation for the API can be found in its GitHub README [here](https://github.com/achasveachas/app-tracker)
 
 This project was bootstrapped using [Create React App](https://github.com/facebookincubator/create-react-app).
 
