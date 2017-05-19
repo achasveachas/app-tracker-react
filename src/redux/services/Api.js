@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-const BASE_URL = 'https://sleepy-cove-46703.herokuapp.com/api/v1/'
+const BASE_URL = 'https://sleepy-cove-46703.herokuapp.com/api/v1'
 
 const parseResponse = (response) => {
   return response.json()
@@ -14,7 +14,7 @@ const parseResponse = (response) => {
 }
 
 export default {
-  
+
   get(url) {
     const headers =  {
       'Accept': 'application/json',
@@ -71,6 +71,5 @@ export default {
       method: 'DELETE',
       headers: headers
     })
-    .then(parseResponse)
   }
 }
