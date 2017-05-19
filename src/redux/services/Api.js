@@ -14,11 +14,12 @@ const parseResponse = (response) => {
 }
 
 export default {
-  const headers =  {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+  
   get(url) {
+    const headers =  {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
     return fetch(`${BASE_URL}${url}`, {
       method: 'GET',
       headers: headers

@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Modal from 'react-modal'
+import { reset, SubmissionError } from 'redux-form';
 
-import { getApplications, setCurrentApplication, removeItem, updateApplication } from '../../../redux/modules/Applications/actions'
+import { getApplications, setCurrentApplication, removeItem, editApplication } from '../../../redux/modules/Applications/actions'
+import ApiServices from '../../../redux/services/Api'
 import ApplicationRow from '../ApplicationRow'
 import ApplicationForm from '../../components/Forms/application'
 
@@ -32,8 +34,19 @@ class ApplicationsTable extends Component {
   }
 
   handleUpdateApplication = (data) => {
-    this.props.updateApplication(data, this.props.currentUser.id, this.props.currentApplication.id)
-    this.closeModal()
+    const user_id = this.props.currentUser.id
+    const app_id = this.props.currentApplication.id
+    return ApiServices.patch("/users/" + user_id + "/applications/" + app_id, data, this.props.token)
+      .then(response => {
+        const { application } = response
+        this.props.editApplication(application)
+        this.props.reset('application')
+        this.closeModal()
+      })
+      .catch((errors) => {
+        console.log(errors)
+        throw new SubmissionError(errors)
+      })
   }
 
   render() {
@@ -46,7 +59,7 @@ class ApplicationsTable extends Component {
       overlay: {
         "position": "absolute",
         "overflow": "auto",
-        "min-height": "825px",
+        "minHeight": "825px",
       }
     }
 
@@ -95,9 +108,10 @@ const mapStateToProps = (state) => {
   return {
     applications: state.applications.applications,
     currentApplication: state.applications.currentApplication,
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    token: state.auth.token
   }
 }
 
 
-export default connect(mapStateToProps, { getApplications, setCurrentApplication, removeItem, updateApplication })(ApplicationsTable)
+export default connect(mapStateToProps, { getApplications, setCurrentApplication, removeItem, editApplication, reset })(ApplicationsTable)
