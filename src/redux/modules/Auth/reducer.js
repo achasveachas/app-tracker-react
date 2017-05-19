@@ -2,7 +2,7 @@ const initialState = {
   isAuthenticated: false,
   isAuthenticating: true,
   currentUser: {},
-  token: null
+  token: null,
   errors: []
 }
 
@@ -29,6 +29,7 @@ export default (state = initialState, action) => {
         isAuthenticated: false,
         isAuthenticating: false,
         currentUser: {},
+        token: null,
         errors: action.errors || []
       }
 

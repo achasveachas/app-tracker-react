@@ -1,8 +1,10 @@
 import React, { Component} from 'react'
 import Modal from 'react-modal'
 import { connect } from 'react-redux';
+import { reset, SubmissionError } from 'redux-form';
 
-import { newApplication, clearCurrentApplication } from '../../redux/modules/Applications/actions'
+import { addApplication, clearCurrentApplication } from '../../redux/modules/Applications/actions'
+import ApiServices from '../../redux/services/Api'
 import ApplicationsTable from '../components/ApplicationsTable'
 import NewApplicationButton from '../components/NewApplicationButton'
 import ApplicationForm from '../components/Forms/application'
@@ -28,8 +30,19 @@ class Dashboard extends Component {
   }
 
   handleNewApplication = (data) => {
-    this.props.newApplication(data, this.props.currentUser.id)
-    this.closeModal()
+    const user_id = this.props.currentUser.id
+    return ApiServices.post("/users/" + user_id + "/applications", data, this.props.token)
+      .then(response => {
+        const { application } = response
+        this.props.addApplication(application)
+        this.props.reset('application')
+        this.closeModal()
+      })
+      .catch((errors) => {
+        console.log(errors)
+        throw new SubmissionError(errors)
+      })
+
   }
 
   render() {
@@ -37,7 +50,7 @@ class Dashboard extends Component {
       overlay: {
         "position": "absolute",
         "overflow": "auto",
-        "min-height": "825px",
+        "minHeight": "825px",
       }
     }
     return (
@@ -63,7 +76,8 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.auth.currentUser,
+    token: state.auth.token,
     currentApplication: state.applications.currentApplication
   }
 }
-export default connect(mapStateToProps, { newApplication, clearCurrentApplication })(Dashboard)
+export default connect(mapStateToProps, { addApplication, clearCurrentApplication, reset })(Dashboard)
