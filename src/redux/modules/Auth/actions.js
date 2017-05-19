@@ -9,10 +9,11 @@ const authRequest = () => {
   }
 }
 
-const authSuccess = (user) => {
+const authSuccess = (user, token) => {
   return {
     type: 'AUTHENTICATION_SUCCESS',
-    user: user
+    user: user,
+    token: token
   }
 }
 
@@ -33,7 +34,7 @@ export const signup = (user, router) => {
       .then(response => {
         const { user, token } = response
         localStorage.setItem('token', JSON.stringify(token))
-        dispatch(authSuccess(user))
+        dispatch(authSuccess(user, token))
         dispatch(reset('signup'))
         router.history.replace('/dashboard')
       })
@@ -52,7 +53,7 @@ export const login = (user, router) => {
       .then(response => {
         const { user, token } = response;
         localStorage.setItem('token', JSON.stringify(token));
-        dispatch(authSuccess(user))
+        dispatch(authSuccess(user, token))
         dispatch(reset('login'));
         router.history.replace('/dashboard');
       })
@@ -71,7 +72,7 @@ export const authenticate = () => {
       .then(response => {
         const { user, token } = response
         localStorage.setItem('token', JSON.stringify(token))
-        dispatch(authSuccess(user))
+        dispatch(authSuccess(user, token))
       })
       .catch((errors) => {
         console.log(errors);

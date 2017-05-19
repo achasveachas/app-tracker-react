@@ -2,6 +2,7 @@ const initialState = {
   isAuthenticated: false,
   isAuthenticating: true,
   currentUser: {},
+  token: null
   errors: []
 }
 
@@ -19,7 +20,8 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         isAuthenticating: false,
-        currentUser: action.user
+        currentUser: action.user,
+        token: action.token
       }
 
     case 'AUTHENTICATION_FAILURE':
