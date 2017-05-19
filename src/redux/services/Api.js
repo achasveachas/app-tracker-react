@@ -32,7 +32,7 @@ export default {
 
   post(url, data ={}) {
     const body = JSON.stringify(data)
-    debugger
+    
     return fetch(`${BASE_URL}${url}`, {
       method: 'POST',
       headers: headers,
@@ -43,10 +43,9 @@ export default {
 
   patch(url, data ={}) {
     const body = JSON.stringify(data)
-    debugger
     return fetch(`${BASE_URL}${url}`, {
       method: 'PATCH',
-      headers: headers,
+      headers: 'headers',
       body: body
     })
     .then(parseResponse)
@@ -55,7 +54,7 @@ export default {
   delete(url) {
     return fetch(`${BASE_URL}${url}`, {
       method: 'DELETE',
-      headers: headers
+      headers: 'headers'
     })
     .then(parseResponse)
   }
