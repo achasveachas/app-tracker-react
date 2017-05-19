@@ -1,6 +1,3 @@
-import ApiServices from '../../../services/Api'
-
-
 export const gotApplications = (applications) => {
   return {
     type: 'GOT_APPLICATIONS',
