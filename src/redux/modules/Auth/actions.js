@@ -33,7 +33,7 @@ export const signup = (user, router) => {
     return ApiServices.post('/users', user)
       .then(response => {
         const { user, token } = response
-        localStorage.setItem('token', JSON.stringify(token))
+        localStorage.setItem('token', token)
         dispatch(authSuccess(user, token))
         dispatch(reset('signup'))
         router.history.replace('/dashboard')
@@ -52,7 +52,7 @@ export const login = (user, router) => {
     return ApiServices.post(`/auth`, user)
       .then(response => {
         const { user, token } = response;
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('token', token);
         dispatch(authSuccess(user, token))
         dispatch(reset('login'));
         router.history.replace('/dashboard');
@@ -65,10 +65,10 @@ export const login = (user, router) => {
   }
 }
 
-export const authenticate = () => {
+export const authenticate = (token) => {
   return dispatch => {
     dispatch(authRequest())
-    return ApiServices.post('/auth/refresh')
+    return ApiServices.post('/auth/refresh', null, token)
       .then(response => {
         const { user, token } = response
         localStorage.setItem('token', JSON.stringify(token))

@@ -33,8 +33,9 @@ class App extends Component {
 
   componentDidMount() {
     const token = localStorage.getItem('token')
+    debugger
     if (token) {
-      this.props.authenticate()
+      this.props.authenticate(token)
     } else {
       this.props.authFailure()
     }
