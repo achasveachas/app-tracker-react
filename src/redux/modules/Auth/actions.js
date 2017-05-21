@@ -71,7 +71,7 @@ export const authenticate = (token) => {
     return ApiServices.post('/auth/refresh', null, token)
       .then(response => {
         const { user, token } = response
-        localStorage.setItem('token', JSON.stringify(token))
+        localStorage.setItem('token', token)
         dispatch(authSuccess(user, token))
       })
       .catch((errors) => {
