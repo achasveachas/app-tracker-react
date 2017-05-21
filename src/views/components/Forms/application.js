@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
 const form = reduxForm({
   form: 'application'
@@ -14,9 +16,20 @@ const renderCheckbox = field => (
     <input type="checkbox" className="uk-checkbox uk-margin-left" {...field.input}/>
 )
 
+const renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
+  <div>
+        <DatePicker {...input} className="uk-input uk-width-small uk-margin-left uk-margin-right uk-form-controls" dateForm="MM/DD/YYYY" selected={input.value ? moment(input.value) : null} />
+  </div>
+);
+
 class ApplicationForm extends Component {
 
-
+  constructor (props) {
+    super(props)
+    this.state = {
+      startDate: moment()
+    };
+  }
 
   componentDidMount() {
     this.handleInitialize()
@@ -60,7 +73,7 @@ class ApplicationForm extends Component {
             <label className="uk-form-label">Date:</label>
             <Field
               name="date"
-              component={renderField}
+              component={renderDatePicker}
             />
             <label className="uk-form-label">Action:</label>
             <Field
