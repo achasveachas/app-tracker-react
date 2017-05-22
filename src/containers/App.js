@@ -8,6 +8,7 @@ import {
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { logout } from '../redux/modules/Auth/actions'
+import fetch from 'isomorphic-fetch'
 
 // views
 import Welcome from '../views/Welcome'
@@ -36,7 +37,7 @@ class App extends Component {
     if (token) {
       this.props.authenticate(token)
     } else {
-      this.props.authFailure()
+      fetch('https://app-tracker-api.herokuapp.com/api/v1')
     }
   }
 
