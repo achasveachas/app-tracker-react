@@ -37,6 +37,7 @@ class App extends Component {
     if (token) {
       this.props.authenticate(token)
     } else {
+      // Ping the API server in case it hasn't been used in 30 inutes and Heroku put it to sleep
       fetch('https://app-tracker-api.herokuapp.com/api/v1')
     }
   }
