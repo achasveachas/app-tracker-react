@@ -16,7 +16,7 @@ class ApplicationsTable extends Component {
     super(props)
     this.state = {
       modalIsOpen: false,
-      filter: null
+      filter: ""
     }
   }
 
@@ -94,24 +94,31 @@ class ApplicationsTable extends Component {
     return (
       <div className="uk-overflow-auto">
         {this.props.applications.length > 0 ?
-          <table className="uk-table uk-table-hover uk-table-divider">
-            <thead>
-              <tr>
-                <th>Company</th>
-                <th>Job Title</th>
-                <th>Contact</th>
-                <th>Date</th>
-                <th>Action</th>
-                <th className="uk-table-expand">Notes</th>
-                <th className="uk-table-shrink uk-table-middle">Completed</th>
-                <th className="uk-table-shrink"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {RenderedRows}
-            </tbody>
+          <div>
+            <form>
+              <div className="uk-margin-left">
+                <input className="uk-input uk-width-medium" type="text" placeholder="Filter By Company Name" value={this.state.filter}/>
+              </div>
+            </form>
+            <table className="uk-table uk-table-hover uk-table-divider">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Job Title</th>
+                  <th>Contact</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                  <th className="uk-table-expand">Notes</th>
+                  <th className="uk-table-shrink uk-table-middle">Completed</th>
+                  <th className="uk-table-shrink"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {RenderedRows}
+              </tbody>
 
-          </table>
+            </table>
+          </div>
         :
           <div>
             <h2 className="uk-heading-line uk-text-center"><span>You do not have any applications at his time</span></h2>
