@@ -15,7 +15,8 @@ class ApplicationsTable extends Component {
 
     super(props)
     this.state = {
-      modalIsOpen: false
+      modalIsOpen: false,
+      filter: null
     }
   }
 
@@ -67,9 +68,18 @@ class ApplicationsTable extends Component {
       })
   }
 
+  filteredApplications = () => {
+    const filter = this.state.filter
+    if (filter && filter.length > 0) {
+      return this.props.applications.filter(app => app.company.includes(filter))
+    } else {
+      return this.props.applications
+    }
+  }
+
   render() {
 
-    const RenderedRows = this.props.applications
+    const RenderedRows = this.filteredApplications()
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map((app, index) => <ApplicationRow key={index} application={app} user_id={this.props.currentUser.id} onClick={this.handleRowClick} onDelete={this.removeItem}/>)
 
