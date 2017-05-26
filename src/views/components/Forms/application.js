@@ -103,7 +103,7 @@ class ApplicationForm extends Component {
               component={renderField}
             />
           </div>
-          <button action="submit" className="uk-button uk-position-bottom-center uk-margin-bottom uk-button-secondary">Save</button>
+          <button action="submit" className="uk-button uk-position-bottom-center uk-margin-bottom uk-button-primary">Save</button>
         </form>
       </div>
     )
