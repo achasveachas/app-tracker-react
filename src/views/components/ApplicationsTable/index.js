@@ -77,6 +77,8 @@ class ApplicationsTable extends Component {
     }
   }
 
+  handleFilterChange = (event) => this.setState({filter: event.target.value})
+
   render() {
 
     const RenderedRows = this.filteredApplications()
@@ -97,7 +99,13 @@ class ApplicationsTable extends Component {
           <div>
             <form>
               <div className="uk-margin-left">
-                <input className="uk-input uk-width-medium" type="text" placeholder="Filter By Company Name" value={this.state.filter}/>
+                <input
+                  className="uk-input uk-width-medium"
+                  type="text"
+                  placeholder="Filter By Company Name"
+                  value={this.state.filter}
+                  onChange={this.handleFilterChange}
+                />
               </div>
             </form>
             <table className="uk-table uk-table-hover uk-table-divider">
