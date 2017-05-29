@@ -81,9 +81,14 @@ class ApplicationsTable extends Component {
 
   render() {
 
-    const RenderedRows = this.filteredApplications()
+    let RenderedRows = <tr><td className="uk-text-bold uk-text-muted uk-text-center">No Applications Match The Current Criteria </td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+    if (this.filteredApplications().length > 0) {
+
+      RenderedRows = this.filteredApplications()
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map((app, index) => <ApplicationRow key={index} application={app} user_id={this.props.currentUser.id} onClick={this.handleRowClick} onDelete={this.removeItem}/>)
+    }
 
     const modalStyle = {
       overlay: {
