@@ -68,20 +68,22 @@ class ApplicationsTable extends Component {
       })
   }
 
-  filteredApplications = () => {
-    const filter = this.state.filter
-    if (filter && filter.length > 0) {
-      return this.props.applications.filter(app => app.company.includes(filter))
-    } else {
-      return this.props.applications
-    }
-  }
+  // filteredApplications = () => {
+  //   const filter = this.state.filter
+  //   if (filter && filter.length > 0) {
+  //     return this.props.applications.filter(app => app.company.includes(filter))
+  //   } else {
+  //     return this.props.applications
+  //   }
+  // }
 
   handleFilterChange = (event) => this.setState({filter: event.target.value})
 
   render() {
+    const filter = this.state.filter
 
-    const RenderedRows = this.filteredApplications()
+    const RenderedRows = this.props.applications
+      .filter(app => app.company.includes(filter))
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .map((app, index) => <ApplicationRow key={index} application={app} user_id={this.props.currentUser.id} onClick={this.handleRowClick} onDelete={this.removeItem}/>)
 
