@@ -98,7 +98,7 @@ class UserForm extends Component {
                 component="input"
                 id="password"
                 type="password"
-                placeholder="Username"
+                placeholder="Password"
               /><br />
             {!!this.state.passwordErrors.password ? <small className="uk-alert-danger">{this.state.passwordErrors.password}</small> : <small><font color="white">.</font></small>}
           </div><br />
