@@ -15,7 +15,7 @@ const renderField = field => (
 )
 
 const renderCheckbox = field => (
-    <input type="checkbox" className="uk-checkbox uk-margin-left" {...field.input}/>
+    <input type="checkbox" className="uk-checkbox uk-margin-left" defaultChecked={field.input.value} {...field.input}/>
 )
 
 const renderDatePicker = ({input, placeholder, defaultValue, meta: {touched, error} }) => (
@@ -31,7 +31,7 @@ class ApplicationForm extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.handleInitialize()
   }
 
@@ -39,7 +39,13 @@ class ApplicationForm extends Component {
     const currentApplication = this.props.currentApplication
     const initData = {
       "company": currentApplication.company,
+      "contact_name": currentApplication.contact_name,
+      "contact_title": currentApplication.contact_title,
       "date": currentApplication.date,
+      "action": currentApplication.action,
+      "job_title": currentApplication.job_title,
+      "job_url": currentApplication.job_url,
+      "notes": currentApplication.notes,
       "complete": currentApplication.complete
     }
     this.props.initialize(initData)
