@@ -71,7 +71,7 @@ class ApplicationsTable extends Component {
   filteredApplications = () => {
     const filter = this.state.filter
     if (filter && filter.length > 0) {
-      return this.props.applications.filter(app => app.company.includes(filter))
+      return this.props.applications.filter(app => app.company.toLowerCase().includes(filter.toLowerCase()))
     } else {
       return this.props.applications
     }
