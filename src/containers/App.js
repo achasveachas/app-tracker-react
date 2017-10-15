@@ -12,6 +12,7 @@ import fetch from 'isomorphic-fetch'
 
 // views
 import Welcome from '../views/Welcome'
+import About from '../views/About'
 import Signup from '../views/Signup'
 import Login from '../views/Login'
 import NotFound from '../views/NotFound'
@@ -64,6 +65,7 @@ class App extends Component {
                 <Redirect to="/"/>
               )
             )}/>
+            <Route exact path="/about" component={About} />
             <Route component={NotFound} />
           </Switch>
         </div>
