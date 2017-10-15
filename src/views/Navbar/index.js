@@ -35,6 +35,7 @@ class Navbar extends Component {
                 <ul className="uk-navbar-nav uk-iconnav">
                   <li><NavLink to="/">Home</NavLink></li>
                   <li><NavLink to="/" onClick={this.handleLogout}>Log Out</NavLink></li>
+                  <li><NavLink to="/about">About</NavLink></li>
                 </ul>
               </div>
               <div className="uk-navbar-right uk-padding-small">
@@ -50,6 +51,7 @@ class Navbar extends Component {
               <li><NavLink to="/">Home</NavLink></li>
               <li><NavLink to="/signup">Signup</NavLink></li>
               <li><NavLink to="/login">Login</NavLink></li>
+              <li><NavLink to="/about">About</NavLink></li>
             </ul>
           }
         </div>
