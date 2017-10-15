@@ -2,7 +2,7 @@ import React from 'react'
 
 const  About = () =>
     <div className="uk-position-center">
-      <h1 className="uk-heading-line uk-text-center"><span>WAbout This App</span></h1>
+      <h1 className="uk-heading-line uk-text-center"><span>About This App</span></h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin elementum sapien in commodo. Aliquam erat volutpat. Donec est sapien, tempor ac nisl at, rutrum porttitor augue. Sed a urna vel augue euismod pellentesque eu eget arcu. Fusce at quam molestie, posuere nisi vitae, dignissim odio. Donec luctus velit in urna ullamcorper cursus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus eu ex tincidunt, viverra justo vitae, dignissim felis. Mauris ultrices mattis lorem non venenatis. Integer nisl turpis, finibus id tellus id, finibus pharetra orci.
 
