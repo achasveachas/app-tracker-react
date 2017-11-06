@@ -34,6 +34,7 @@ class App extends Component {
   props: Props
 
   componentDidMount() {
+    this.printGreeting()
     const token = localStorage.getItem('token')
     if (token) {
       this.props.authenticate(token)
@@ -41,6 +42,10 @@ class App extends Component {
       // Ping the API server in case it hasn't been used in 30 minutes and Heroku put it to sleep
       fetch('https://app-tracker-api.herokuapp.com/api/v1')
     }
+  }
+
+  printGreeting() {
+    console.log("Thanks for stopping by!\nTo get in touch:\nWebsite: yechiel.me\nEmail: holler@yechiel.me\nBlog: blog.yechiel.me\nTwitter: @yechielk\nGitHub: achasveachas\nLinkdIn: www.linkedin.com/in/yechiel-k")
   }
 
   render() {
